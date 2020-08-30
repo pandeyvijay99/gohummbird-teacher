@@ -18,12 +18,12 @@ func SetupRoutes(app *fiber.App) {
 	auth.Post("/login", handlers.Login)
 
 	// User
-	user := api.Group("/user", middleware.Protected())
-	user.Get("/", handlers.GetUsers)
-	user.Get("/:id", handlers.GetUser)
-	user.Post("/", handlers.CreateUser)
-	user.Patch("/:id", handlers.UpdateUser)
-	user.Delete("/:id", handlers.DeleteUser)
+	//user := api.Group("/user", middleware.Protected())
+	//user.Get("/", handlers.GetUsers)
+	//user.Get("/:id", handlers.GetUser)
+	//user.Post("/", handlers.CreateUser)
+	//user.Patch("/:id", handlers.UpdateUser)
+	//user.Delete("/:id", handlers.DeleteUser)
 
 	// Product
 	product := api.Group("/product", middleware.Protected())
@@ -32,13 +32,14 @@ func SetupRoutes(app *fiber.App) {
 	product.Post("/", handlers.CreateProduct)
 	product.Delete("/:id", handlers.DeleteProduct)
 
-//teacher Detail Api
 
-teacher := api.Group("/", middleware.Protected())
-teacher.Get("/", handlers.GetTeachers)
-teacher.Get("/:id", handlers.GetTeacher)
-teacher.Post("/", handlers.CreateTeacher)
-teacher.Patch("/:id", handlers.UpdateTeacher)
-teacher.Delete("/:id", handlers.DeleteTeacher)
+
+// Teacher
+	student := api.Group("/teacher")
+	student.Post("/create", handlers.AddNewTeacher)
+	student.Post("/update/:id", handlers.UpdateTeacher)
+	student.Get("/get-all-teachers", handlers.GetAllTeachers)
+	student.Get("/get-individual-teacher/:id", handlers.GetTeacher)
+
 
 }
