@@ -35,7 +35,7 @@ func UpdateTeacher(c *fiber.Ctx) {
 		c.Status(500).JSON(fiber.Map{"status": "error", "message": "Couldn't update teacher", "data": err})
 		return
 	}
-	// db.Delete(&teacher)
+	 db.Delete(&teacher)
 	db.Save(&teacher)
 	
 	c.JSON(fiber.Map{"status": "success", "message": "Teacher successfully updated", "data": teacher})
@@ -68,7 +68,7 @@ func GetTeacher(c *fiber.Ctx) {
 	db := db.DB
 	var teacher models.Teacher
 	db.Find(&teacher, id)
-	if teacher.id == "" {
+	if teacher.Name == "" {
 		c.Status(404).JSON(fiber.Map{"status": "error", "message": "No teacher found with ID", "data": nil})
 		return
 	}

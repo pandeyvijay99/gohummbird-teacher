@@ -38,8 +38,8 @@ func SetupRoutes(app *fiber.App) {
 	student := api.Group("/teacher")
 	student.Post("/create", handlers.AddNewTeacher)
 	student.Post("/update/:id", handlers.UpdateTeacher)
-	student.Get("/get-all-teachers", handlers.GetAllTeachers)
-	student.Get("/get-individual-teacher/:id", handlers.GetTeacher)
+	student.Get("/get-all", handlers.GetAllTeachers)
+	student.Get("/get/:id", handlers.GetTeacher)
 
 
 }
