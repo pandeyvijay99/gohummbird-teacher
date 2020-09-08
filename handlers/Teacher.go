@@ -57,7 +57,7 @@ func GetAllTeachers(c *fiber.Ctx) {
 
 	var total int64
 	db.Model(&teacher).Count(&total)
-	db.Select("teachers.name,teachers.teacher_profile_pic,teachers.phone_number, teachers.emp_id,teachers.personal_email").Find(&teacher)
+	db.Find(&teacher)
 
 	c.JSON(fiber.Map{"status": "success", "message": "All teachers", "data": teacher, "total": total})
 }
